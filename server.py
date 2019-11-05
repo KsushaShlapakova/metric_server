@@ -3,13 +3,21 @@ import json
 
 
 def get_file():
-    open('results.txt', 'tw', encoding='utf-8')
-    with open('results.txt', encoding='utf-8') as f:
-        text = f.read()
-        if text:
-            information = json.loads(text)
-            return information
-        return {}
+    try:
+        with open('results.txt', 'r', encoding='utf-8') as f:
+            text = f.read()
+            if text:
+                information = json.loads(text)
+                return information
+            return {}
+    except FileNotFoundError:
+        open('results.txt', 'tw', encoding='utf-8')
+        with open('results.txt', 'r', encoding='utf-8') as f:
+            text = f.read()
+            if text:
+                information = json.loads(text)
+                return information
+            return {}
 
 
 def put_file(final_dict):
