@@ -3,6 +3,7 @@ import json
 
 
 def get_file():
+    open('results.txt', 'tw', encoding='utf-8')
     with open('results.txt', encoding='utf-8') as f:
         text = f.read()
         if text:
